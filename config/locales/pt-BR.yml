@@ -34,6 +34,10 @@ pt-BR:
   usuario: Usuário
   turma: Turma
   codigo: Código
+  disciplina: Disciplina
+  estabelecimento: Estabelecimento
+  endereco: Endereço
+  ativo: Ativo
   dt_nascimento: 'Data de Nascimento'
   dt_alteracao_senha: 'Data de Alteração da Senha'
   ultimo_dispositivo: 'Último Dispositivo'
