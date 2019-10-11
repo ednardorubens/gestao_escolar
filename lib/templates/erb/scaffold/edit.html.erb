@@ -1,0 +1,5 @@
+<%% content_for :titulo do %>
+  <%%= t('.title', :default => :'helpers.titles.edit', :model => t('<%= singular_table_name %>')) %>
+<%% end %>
+
+<%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
