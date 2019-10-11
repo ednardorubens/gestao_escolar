@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title><%= content_for?(:title) ? yield(:title) : t('aplicacao') %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <a class="navbar-brand" href="#"><%= t('aplicacao') %></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Cadastro
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to t('usuario'), usuarios_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <span  class="text-white ml-sm-3 mr-sm-3">Raimundo Fagner</span>
+          <a class="btn btn-warning my-2 my-sm-0" th:href="@{/logout}">Sair</a>
+        </form>
+      </div>
+    </nav>
+
+    <main role="main">
+      <div class="container">
+        <%= render_breadcrumbs(' | ') %>
+        <% if content_for?(:titulo) %></h1>
+        <div class="page-header">
+          <h1><%= yield(:titulo) %></h1>
+        </div>
+        <% end %>
+        <%= content_for?(:messages) ? yield(:messages) : bootstrap_flash %>
+        <%= yield %>
+      </div>
+    </main>
+
+    <section class="copyright py-3 text-center text-white">
+      <small>Copyright &copy; ERMIG 2019</small>
+    </section>
+
+    <div id="modalExcluir" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h4 class="modal-title"><%= t('helpers.links.delete') %></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><%= t('helpers.links.confirm_delete') %></p>
+          </div>
+          <div class="modal-footer">
+            <%= link_to "#",
+              :id => "linkExcluir", :title => t('helpers.links.delete'),
+              :method => :delete, :class => 'btn btn-danger btn-xs' do %>
+              <i class="fas fa-trash-alt"></i>
+              <%= t('helpers.links.delete') %>
+            <% end %>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+              <i class="fas fa-undo"></i>
+              <%= t('helpers.links.cancel') %>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<% #rails g scaffold usuario nome:index email:uniq password:digest ativo:boolean -f --skip-style sheets --skip-javascripts %>
