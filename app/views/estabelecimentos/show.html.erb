@@ -1,0 +1,27 @@
+<% content_for :titulo do %>
+  <%= t('.title', :default => :'helpers.titles.show', :model => t('estabelecimento')) %>
+<% end %>
+
+<dl class="dl-horizontal">
+  <p>
+    <dt><strong>Nome:</strong></dt>
+    <dd><%= @estabelecimento.nome %></dd>
+  </p>
+  <p>
+    <dt><strong>Endereco:</strong></dt>
+    <dd><%= @estabelecimento.endereco %></dd>
+  </p>
+  <p>
+    <dt><strong>Ativo:</strong></dt>
+    <dd><%= @estabelecimento.ativo %></dd>
+  </p>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              estabelecimentos_path, :class => 'btn btn-secondary'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_estabelecimento_path(@estabelecimento), :class => 'btn btn-primary' %>
+<%= link_to t('.delete', :default => t("helpers.links.delete")),
+              estabelecimento_path(@estabelecimento),
+              :method => 'delete', :class => 'btn btn-danger',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm_delete", :default => 'Você tem certeza que deseja excluir?')) }%>
