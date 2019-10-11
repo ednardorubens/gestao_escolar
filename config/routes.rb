@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :disciplinas
   resources :turmas
   scope path_names: { new: "novo", edit: "editar" } do
     resources :usuarios

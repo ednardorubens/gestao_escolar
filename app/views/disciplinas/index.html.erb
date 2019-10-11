@@ -1,0 +1,49 @@
+<% content_for :titulo do %>
+  <%= t('.title', :default =>  t('helpers.titles.list'), :model => t('disciplina').pluralize) %>
+<% end %>
+
+<table class="table table-sm table-hover table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="text-center">#</th>
+      <th scope="col"><%= t('nome') %></th>
+      <th scope="col"><%= t('codigo') %></th>
+      <th scope="col"><%= t('ativo') %></th>
+      <th scope="col" class="text-center"><%= t('.actions', :default => t('helpers.actions')) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @disciplinas.each do |disciplina| %>
+      <tr>
+        <th scope="col" class="text-center"><%= disciplina.id %></th>
+        <td><%= disciplina.nome %></td>
+        <td><%= disciplina.codigo %></td>
+        <td><i class="fas fa<%= '-check' if disciplina.ativo == true %>-square"></i></td>
+        <td class="acoes">
+        <%= link_to disciplina,
+          :title => t('helpers.links.show'),
+          :class => 'btn btn-info btn-xs' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+        <%= link_to edit_disciplina_path(disciplina),
+          :title => t('helpers.links.edit'),
+          :class => 'btn btn-success btn-xs' do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <a data-toggle="modal" data-target="#modalExcluir"
+          data-href="<%= disciplina_path(disciplina) %>"
+          class="btn btn-danger btn-xs text-white"
+          title="<%= t('helpers.links.delete') %>">
+          <i class="far fa-trash-alt"></i>
+        </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to new_disciplina_path,
+  :class => 'btn btn-primary' do %>
+  <i class="fas fa-plus"></i>
+  <%= t('helpers.links.new') %>
+<% end %>

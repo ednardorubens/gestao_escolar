@@ -1,0 +1,5 @@
+<% content_for :titulo do %>
+  <%= t('.title', :default => :'helpers.titles.edit', :model => t('disciplina')) %>
+<% end %>
+
+<%= render 'form', disciplina: @disciplina %>
