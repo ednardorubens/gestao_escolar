@@ -1,0 +1,27 @@
+<% content_for :titulo do %>
+  <%= t('.title', :default => :'helpers.titles.show', :model => t('turma')) %>
+<% end %>
+
+<dl class="dl-horizontal">
+  <p>
+    <dt><strong>Nome:</strong></dt>
+    <dd><%= @turma.nome %></dd>
+  </p>
+  <p>
+    <dt><strong>Codigo:</strong></dt>
+    <dd><%= @turma.codigo %></dd>
+  </p>
+  <p>
+    <dt><strong>Ativo:</strong></dt>
+    <dd><%= @turma.ativo %></dd>
+  </p>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              turmas_path, :class => 'btn btn-secondary'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_turma_path(@turma), :class => 'btn btn-primary' %>
+<%= link_to t('.delete', :default => t("helpers.links.delete")),
+              turma_path(@turma),
+              :method => 'delete', :class => 'btn btn-danger',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm_delete", :default => 'Você tem certeza que deseja excluir?')) }%>
