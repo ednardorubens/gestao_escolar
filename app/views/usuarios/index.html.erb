@@ -1,0 +1,49 @@
+<% content_for :titulo do %>
+  <%= t('.title', :default =>  t('helpers.titles.list'), :model => t('usuario').pluralize) %>
+<% end %>
+
+<table class="table table-sm table-hover table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="text-center">#</th>
+      <th scope="col"><%= t('nome') %></th>
+      <th scope="col"><%= t('email') %></th>
+      <th scope="col"><%= t('ativo') %></th>
+      <th scope="col" class="text-center"><%= t('.actions', :default => t('helpers.actions')) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @usuarios.each do |usuario| %>
+      <tr>
+        <th scope="col" class="text-center"><%= usuario.id %></th>
+        <td><%= usuario.nome %></td>
+        <td><%= usuario.email %></td>
+        <td><i class="fas fa<%= '-check' if usuario.ativo == true %>-square"></i></td>
+        <td class="acoes">
+        <%= link_to usuario,
+          :title => t('helpers.links.show'),
+          :class => 'btn btn-info btn-xs' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+        <%= link_to edit_usuario_path(usuario),
+          :title => t('helpers.links.edit'),
+          :class => 'btn btn-success btn-xs' do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <a data-toggle="modal" data-target="#modalExcluir"
+          data-href="<%= usuario_path(usuario) %>"
+          class="btn btn-danger btn-xs text-white"
+          title="<%= t('helpers.links.delete') %>">
+          <i class="far fa-trash-alt"></i>
+        </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to new_usuario_path,
+  :class => 'btn btn-primary' do %>
+  <i class="fas fa-plus"></i>
+  <%= t('helpers.links.new') %>
+<% end %>

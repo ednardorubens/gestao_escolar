@@ -1,0 +1,5 @@
+<% content_for :titulo do %>
+  <%= t('.title', :default => :'helpers.titles.edit', :model => t('usuario')) %>
+<% end %>
+
+<%= render 'form', usuario: @usuario %>
