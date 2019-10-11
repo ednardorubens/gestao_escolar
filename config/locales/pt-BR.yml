@@ -32,6 +32,8 @@
 pt-BR:
   aplicacao: "Gestão Escolar"
   usuario: Usuário
+  turma: Turma
+  codigo: Código
   dt_nascimento: 'Data de Nascimento'
   dt_alteracao_senha: 'Data de Alteração da Senha'
   ultimo_dispositivo: 'Último Dispositivo'
